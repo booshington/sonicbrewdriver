@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 interface ITool {
-    id: number;
+    name: string;
+    description: string;
 }
 
 class Tool extends Component<ITool>{
@@ -10,9 +11,11 @@ class Tool extends Component<ITool>{
     }
     render(){
         return (
-            <div>
-                { this.props.id }
-            </div>
+                <div className="waves-effect waves-light btn-large">
+                    { this.props.name }
+                </div>
         )
     }
 }
+
+export default Tool;
