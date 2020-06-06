@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import {Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import Toolbox from './Toolbox';
 
 class App extends Component {
-  constructor(props){
+  constructor(props: any){
     super(props);
     this.state = {
     }
@@ -21,7 +22,7 @@ class App extends Component {
           </div>
         </nav>
         <Route exact path="/" render={() => (<div>Home page</div>)}/>
-        <Route exact path="/tools" render={() => (<div>Toolbox</div>)}/>
+        <Route exact path="/tools" render={() => (<Toolbox />)}/>
         <Route exact path="/recipes" render={() => (<div>Recipes</div>)}/>
       </div>
     );
