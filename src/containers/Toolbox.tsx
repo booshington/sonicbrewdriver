@@ -1,48 +1,62 @@
 import React, { Component } from 'react'
-import Tool from '../components/Tool'
+import { ITool, Tool }   from '../components/Tool'
+import testTools from '../test/testTools';
 
-class Toolbox extends Component{
+interface IToolBox {
+    numCols: number;
+}
+
+class Toolbox extends Component<IToolBox>{
     constructor(props: any){
         super(props);
     }
+    
+    /*
+        generateGrid
 
+            Generates the Tool grid.
+
+        Arguments:
+            array (ITool[]): ITool array to be rendered into rows and columns
+            numCols (number): Desired # of columns
+
+        Returns:
+            rows (React.Component[]): Array of React components comprising the grid
+
+            In the format of:
+                <div class=row>
+                    <div class=col>
+                        <Tool />
+                    </div>
+                    ... until numCols is reached (or all Tools rendered)
+                </row>
+                ... until all Tools are rendered
+    */
+   generateGrid(array: ITool[], numCols: number){
+        var rows = []
+        var numRows = Math.ceil(array.length/numCols)
+        for(var i = 0, toolIndex = 0; i < numRows;i++){
+            let cols = []
+            for (var j = 0; j<numCols; j++, toolIndex++){
+                if(!array[toolIndex]){break}
+                cols.push(
+                    <div className={`col l${Math.floor(12/numCols)} center-align`}>
+                        <Tool {...array[toolIndex]} />
+                    </div>
+                )
+            }
+            let row = <div className={"row"}>{[...cols]}</div>
+            rows.push(row)
+        }
+        return rows
+    }
     render(){
-        const testTools = [
-            {
-                name:"ABV Calc",
-                description:"Alcohol by Volume calculator",
-            },
-            {
-                name:"Hydrometer Temp Calibration",
-                description:"Adjusts the hydrometer reading based on liquid temperature",
-            },
-            {
-                name:"SRM Calculator",
-                description:"Calculates an estimated SRM based on grain bill and other variables",
-            },
-            {
-                name:"IBU Calculator",
-                description:"Calculates an estimated IBU on a given hop schedule and other variables",
-            },
-            {
-                name:"Boiloff and Dilution Calculator",
-                description:"Calculates estimated concentration change through boiloff over time and \
-                    liquid quantity, or calculates required boiloff time given a quantity delta.",
-            },
-        ]
+        const {numCols} = this.props
         return (
-            <div>
-                <div className={"row"}>
-                    {
-                        testTools.map((currelement, index) => {
-                            return (
-                            <div className="col sml4">
-                                <Tool {...currelement} />
-                            </div>
-                            );
-                          })
-                    }     
-                </div>
+            <div className="container">
+                {
+                    this.generateGrid(testTools, numCols)
+                }
             </div>
         )
     }

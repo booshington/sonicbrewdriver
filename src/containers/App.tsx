@@ -9,6 +9,7 @@ class App extends Component {
     }
   };
   render(){
+    const numCols = 4;
     return (
       <div>
         <nav>
@@ -21,7 +22,7 @@ class App extends Component {
           </div>
         </nav>
         <Route exact path="/" render={() => (<div>Home page</div>)}/>
-        <Route exact path="/tools" render={() => (<Toolbox />)}/>
+        <Route exact path="/tools" render={() => (<Toolbox numCols={numCols} />)}/>
         <Route exact path="/recipes" render={() => (<div>Recipes</div>)}/>
       </div>
     );

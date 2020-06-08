@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-interface ITool {
+export interface ITool {
     name: string;
     description: string;
 }
 
-class Tool extends Component<ITool>{
+export class Tool extends Component<ITool>{
     constructor(props: ITool){
         super(props)
     }
