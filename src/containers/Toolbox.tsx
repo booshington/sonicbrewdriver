@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { ITool, Tool }   from '../components/Tool'
 import testTools from '../test/testTools';
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 interface IToolBox {
-    //numCols: number;
+    numCols?: number;
+    tools: ITool[];
 }
 
 class Toolbox extends Component<IToolBox>{
@@ -11,6 +12,10 @@ class Toolbox extends Component<IToolBox>{
         super(props);
     }
     
+    static defaultProps = {
+        numCols: 1,
+    }
+
     /*
         generateGrid
 
@@ -40,8 +45,8 @@ class Toolbox extends Component<IToolBox>{
             for (var j = 0; j<numCols; j++, toolIndex++){
                 if(!array[toolIndex]){break}
                 cols.push(
-                    <div className={"col-12"}>
-                        <Tool {...array[toolIndex]} />
+                    <div className={`col-${Math.floor(12/numCols)}`}>
+                        <Link to={{pathname: `/${array[toolIndex].path}`}} className={"nav-link"}>{array[toolIndex].name}</Link>
                     </div>
                 )
             }
@@ -51,11 +56,11 @@ class Toolbox extends Component<IToolBox>{
         return rows
     }
     render(){
-        //const {numCols} = this.props
+        const numCols = this.props.numCols || Toolbox.defaultProps.numCols;
         return (
             <div className="container">
                 {
-                    this.generateGrid(testTools, 1)
+                    this.generateGrid(testTools, numCols)
                 }
             </div>
         )

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Toolbox from './Toolbox';
 import testTools from '../test/testTools'
-import { ITool } from '../components/Tool';
+import { Tool, ITool } from '../components/Tool';
 
 class App extends Component {
   constructor(props: any){
@@ -29,16 +29,23 @@ class App extends Component {
                         )
                       })
                     }
-                    <div className={"dropdown-divider"}></div>
+                    <div className={"dropdown-divider"} hidden={true}></div>
                   </div>
                 </li>
-                  {/*<li className={"nav-item"}><Link to={{pathname: "/tools",state:this.state}} className={"nav-link"}>Toolbox</Link></li>*/}
-                  {/*<li className={"nav-item"}><Link to={{pathname: "/recipes",state:this.state}} className={"nav-link"}>Recipe Creator</Link></li>*/}
+                  <li className={"nav-item"}><Link to={{pathname: "/toolbox",state:this.state}} className={"nav-link"}>Toolbox</Link></li>
+                  <li className={"nav-item"}><Link to={{pathname: "/recipes",state:this.state}} className={"nav-link"}>Recipe Creator</Link></li>
               </ul>
           </div>
         </nav>
         <Route exact path="/" render={() => (<div>Home page</div>)}/>
-        <Route exact path="/tools" render={() => (<Toolbox />)}/>
+        <Route exact path="/toolbox" render={() => (<Toolbox tools={testTools} />)}/>
+        {
+          testTools.map((value: ITool, index) => {
+            return (
+              <Route exact path={`/${value.path}`} render={() => (<Tool {...value}/>)}/>
+            )
+          })
+        }
         <Route exact path="/recipes" render={() => (<div>Recipes</div>)}/>
       </div>
     );
