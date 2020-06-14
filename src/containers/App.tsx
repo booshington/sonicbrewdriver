@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div>
         <nav className={"navbar navbar-expand-lg navbar-light bg-light"}>
-          <Link to="/" className={"navbar-brand"}>Sonic BrewDriver v0.1</Link>
+          <Link to="/" className={"navbar-brand"}>Sonic BrewDriver v0.2</Link>
           <div className={"collapse navbar-collapse"}>
               <ul id="linklist" className={"navbar-nav mr-auto"}>
               <li className={"nav-item dropdown"}>
