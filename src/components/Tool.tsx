@@ -12,9 +12,9 @@ export class Tool extends Component<ITool>{
     }
     render(){
         return (
-                <div className="">
-                    { this.props.name }
-                </div>
+            <div className="">
+                { this.props.name }
+            </div>
         )
     }
 }

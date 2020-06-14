@@ -31,9 +31,9 @@ class Toolbox extends Component<IToolBox>{
             In the format of:
                 <div class=row>
                     <div class=col>
-                        <Tool />
+                        <Link />
                     </div>
-                    ... until numCols is reached (or all Tools rendered)
+                    ... until numCols is reached (or all Links rendered)
                 </row>
                 ... until all Tools are rendered
     */
