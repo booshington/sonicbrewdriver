@@ -4,7 +4,7 @@ export interface ITool {
     name: string;
     description: string;
     path: string;
-    formfunc:() => void;
+    formfunc:(t: any) => void;
     form: {
         inputs: Array<IToolFormInputs>
     }
@@ -22,10 +22,9 @@ export class Tool extends Component<ITool>{
         this.runFormFunc = this.runFormFunc.bind(this);
     }
 //    const { name, description, path, formfunc } = this.props;
-
-    runFormFunc(e: FormEvent){
+    runFormFunc(e: any){
         e.preventDefault();
-        this.props.formfunc()
+        this.props.formfunc(e.target)
     }
 
     render(){
@@ -33,10 +32,10 @@ export class Tool extends Component<ITool>{
             <div className="">
                 <form onSubmit={this.runFormFunc}>
                     {this.props.form.inputs.map((value, index, array) => {
-                        return (<label>
+                        return (<p>
                             {value.name}
                         <input type={value.inputType} id={value.id} />
-                        </label>)
+                        </p>)
                     })}
                     <input type="submit" value="Submit" />
                 </form>

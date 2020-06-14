@@ -4,7 +4,11 @@ export const testTools: ITool[] = [
         name:"ABV Calc",
         description:"Alcohol by Volume calculator",
         path: "abvcalc",
-        formfunc: () => {console.log('abvcalc')},
+        formfunc: (formInput: any) => {
+            console.log('abvcalc');
+            console.log(formInput.og.value);
+            console.log(formInput.fg.value);
+        },
         form: {
             inputs: [
                 {
@@ -15,7 +19,7 @@ export const testTools: ITool[] = [
                 {
                     name: 'FG',
                     inputType: 'text',
-                    id: 'og'
+                    id: 'fg'
                 },
             ]
         }
@@ -24,7 +28,7 @@ export const testTools: ITool[] = [
         name:"Hydrometer Temp Calibration",
         description:"Adjusts the hydrometer reading based on liquid temperature",
         path: "hydrocalib",
-        formfunc: () => {console.log('hydro temp')},
+        formfunc: (t: any) => {console.log('hydro temp')},
         form: {
             inputs: [
                 {
@@ -49,7 +53,7 @@ export const testTools: ITool[] = [
         name:"SRM Calculator",
         description:"Calculates an estimated SRM based on grain bill and other variables",
         path: "srmcalc",
-        formfunc: () => {console.log('srm calc')},
+        formfunc: (t: any) => {console.log('srm calc')},
         form: {
             inputs: [
                 {
@@ -64,7 +68,7 @@ export const testTools: ITool[] = [
         name:"IBU Calculator",
         description:"Calculates an estimated IBU on a given hop schedule and other variables",
         path: "ibucalc",
-        formfunc: () => {console.log('ibu calc')},
+        formfunc: (t: any) => {console.log('ibu calc')},
         form: {
             inputs: [
                 {
@@ -80,7 +84,7 @@ export const testTools: ITool[] = [
         description:"Calculates estimated concentration change through boiloff over time and \
             liquid quantity, or calculates required boiloff time given a quantity delta.",
         path: "boiloffcalc",
-        formfunc: () => {console.log('dilution calc')},
+        formfunc: (t: any) => {console.log('dilution calc')},
         form: {
             inputs: [
                 {
