@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export interface ITool {
     name: string;
     description: string;
+    path: string;
 }
 
 export class Tool extends Component<ITool>{
@@ -11,7 +12,7 @@ export class Tool extends Component<ITool>{
     }
     render(){
         return (
-                <div className="waves-effect waves-light btn-large">
+                <div className="">
                     { this.props.name }
                 </div>
         )

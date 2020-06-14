@@ -3,7 +3,7 @@ import { ITool, Tool }   from '../components/Tool'
 import testTools from '../test/testTools';
 
 interface IToolBox {
-    numCols: number;
+    //numCols: number;
 }
 
 class Toolbox extends Component<IToolBox>{
@@ -40,7 +40,7 @@ class Toolbox extends Component<IToolBox>{
             for (var j = 0; j<numCols; j++, toolIndex++){
                 if(!array[toolIndex]){break}
                 cols.push(
-                    <div className={`col l${Math.floor(12/numCols)} center-align`}>
+                    <div className={"col-12"}>
                         <Tool {...array[toolIndex]} />
                     </div>
                 )
@@ -51,11 +51,11 @@ class Toolbox extends Component<IToolBox>{
         return rows
     }
     render(){
-        const {numCols} = this.props
+        //const {numCols} = this.props
         return (
             <div className="container">
                 {
-                    this.generateGrid(testTools, numCols)
+                    this.generateGrid(testTools, 1)
                 }
             </div>
         )
