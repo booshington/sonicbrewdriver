@@ -5,9 +5,10 @@ export const testTools: ITool[] = [
         description:"Alcohol by Volume calculator",
         path: "abvcalc",
         formfunc: (formInput: any) => {
-            console.log('abvcalc');
-            console.log(formInput.og.value);
-            console.log(formInput.fg.value);
+            const og: number = formInput.og.value;
+            const fg: number = formInput.fg.value;
+            const val = ((og - fg) * 131.25).toPrecision(4)
+            return `${val}%`
         },
         form: {
             inputs: [

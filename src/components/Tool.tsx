@@ -4,7 +4,7 @@ export interface ITool {
     name: string;
     description: string;
     path: string;
-    formfunc:(t: any) => void;
+    formfunc:(t: any) => any;
     form: {
         inputs: Array<IToolFormInputs>
     }
@@ -16,15 +16,20 @@ export interface IToolFormInputs {
     id: string;
 }
 
-export class Tool extends Component<ITool>{
+export class Tool extends Component<ITool, { result: string }>{
     constructor(props: ITool){
         super(props)
+        this.state = {
+            result: 'Awaiting Calculation...',
+        }
         this.runFormFunc = this.runFormFunc.bind(this);
     }
 //    const { name, description, path, formfunc } = this.props;
     runFormFunc(e: any){
         e.preventDefault();
-        this.props.formfunc(e.target)
+        const result = this.props.formfunc(e.target) || 0
+        console.log(result)
+        this.setState({result: result})
     }
 
     render(){
@@ -39,6 +44,9 @@ export class Tool extends Component<ITool>{
                     })}
                     <input type="submit" value="Submit" />
                 </form>
+                <div id={"resultBox"}>
+                    { this.state.result }
+                </div>
             </div>
         )
     }
